@@ -125,7 +125,12 @@ function winMessage() {
     messageContainer.setAttribute("id","messageContainer")
     messageContainer.appendChild(message)
     fullContainer.appendChild(messageContainer)
+    setTimeout(function(){
+        messageContainer.removeAttribute("id")
+        messageContainer.classList.add("messageContainer")
+    }, 3000)
 }
+
 
 //função para resetar o game
 /* TO DO */
