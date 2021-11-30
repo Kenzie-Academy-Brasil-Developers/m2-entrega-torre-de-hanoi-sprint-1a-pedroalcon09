@@ -73,6 +73,27 @@ button:hover {
 
 /* BODY */
 
+/* POPUP/MENSAGEM DE VITÓRIA */
+.messageContainer {
+    display: none;
+}
+#messageContainer {
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    z-index: 1;
+    height: 15vh;
+    width: 40vw;
+    text-align: center;
+    line-height: 100px;
+    border: 2px solid;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: forestgreen;
+}
 
 /* TORRES E DISCOS DO DOM */
 
@@ -134,3 +155,96 @@ footer p {
 }
 
 /* FOOTER */
+
+@media (min-width:667px) {
+
+
+    h1 {
+        font-size: 35px;
+    }
+    img {
+        width: 45px;
+    }
+
+
+    #tower-1, #tower-2, #tower-3  {
+        height: 200px;
+        width: 15px;
+    }
+
+    #disc-1, #disc-2, #disc-3, #disc-4 {
+        height: 40px;
+    }   
+    #disc-4 {
+        width: 50px;
+        background-color: red;
+    }
+    #disc-3 {
+        width: 75px;
+        background-color: green;
+    }
+    #disc-2 {
+        width: 115px;
+        background-color: blue;
+    }
+    #disc-1 {
+        width: 170px;
+        background-color: yellow;
+    }
+
+    p, li {
+        font-size: 20px;
+    }
+    
+    h3 {
+        font-size: 28px;
+    }
+
+
+}
+
+@media (min-width:1024px) {
+
+    h1 {
+        font-size: 40px;
+    }
+    img {
+        width: 50px;
+    }
+
+    #tower-1, #tower-2, #tower-3  {
+        height: 220px;
+        width: 18px;
+    }
+
+    #disc-1, #disc-2, #disc-3, #disc-4 {
+        height: 40px;
+    }   
+    #disc-4 {
+        width: 60px;
+        background-color: red;
+    }
+    #disc-3 {
+        width: 85px;
+        background-color: green;
+    }
+    #disc-2 {
+        width: 125px;
+        background-color: blue;
+    }
+    #disc-1 {
+        width: 180px;
+        background-color: yellow;
+    }
+
+    p {
+        font-size: 24px;
+    }
+    ul li {
+        font-size: 22px;
+    }
+    
+    h3 {
+        font-size: 32px;
+    }
+}
