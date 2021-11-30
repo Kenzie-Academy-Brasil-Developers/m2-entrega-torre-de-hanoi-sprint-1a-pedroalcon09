@@ -5,6 +5,13 @@ resetButton.addEventListener('click', reset)
 
 const campo = document.getElementById('towers-container');
 
+const botaoFacil = document.getElementById('facil');
+botaoFacil.addEventListener('click', easy);
+const botaoMedio = document.getElementById('medio');
+botaoMedio.addEventListener('click', medium);
+const botaoDificil = document.getElementById('dificil');
+botaoDificil.addEventListener('click', hard);
+
 const torre1 = document.createElement('div');
 torre1.setAttribute('id', 'tower-1');
 torre1.addEventListener('click', selectDisc);
@@ -35,47 +42,74 @@ disco6.setAttribute('id', 'disc-6');
     
 //Variavel pra saber se ativa selectDisc ou moveDisc
 let discMoving = false;
-let selectedDisc = null;
+//variavel para acessar disco selecionado
+let selectedDisc;
+//variavel para dizer o tanto de discos que tem na dificuldade escolhida
+let discAmount = 4;
 
 function buildField() {
-    
-    //A selecao de dificuldade vai entrar em condicionais nessa funcao
-    //Se dif facil
-        //4 discos
-    torre1.appendChild(disco1);
-    torre1.appendChild(disco2);
-    torre1.appendChild(disco3);
-    torre1.appendChild(disco4);
+            //A selecao de dificuldade vai entrar em condicionais nessa funcao
+        //Se dif facil
+            //4 discos
+        if (discAmount === 4) {
+            torre1.appendChild(disco1);
+            torre1.appendChild(disco2);
+            torre1.appendChild(disco3);
+            torre1.appendChild(disco4);
 
-    campo.appendChild(torre1);
-    campo.appendChild(torre2);
-    campo.appendChild(torre3);
+            campo.appendChild(torre1);
+            campo.appendChild(torre2);
+            campo.appendChild(torre3);
+        }
+        //Se dif difícil
+            //5 discos
+        else if (discAmount === 5) {
+            torre1.appendChild(disco1);
+            torre1.appendChild(disco2);
+            torre1.appendChild(disco3);
+            torre1.appendChild(disco4);
+            torre1.appendChild(disco5);
 
-    //Se dif médio
-        //5 discos
-        
-    //Se dif difícil
-        //6 discos
+            campo.appendChild(torre1);
+            campo.appendChild(torre2);
+            campo.appendChild(torre3);
+        }   
+        //Se dif médio
+            //6 discos
+        else if (discAmount === 6) {
+            torre1.appendChild(disco1);
+            torre1.appendChild(disco2);
+            torre1.appendChild(disco3);
+            torre1.appendChild(disco4);
+            torre1.appendChild(disco5);
+            torre1.appendChild(disco6);
+
+            campo.appendChild(torre1);
+            campo.appendChild(torre2);
+            campo.appendChild(torre3);
+        }     
 }
 
 function selectDisc(event) {
+    
     if (discMoving === false) {
         selectedDisc = event.currentTarget.lastElementChild;
         selectedDisc.style.border = '2px solid white';
+        console.log(selectedDisc)
         discMoving = true;
     }
 }
 
 function moveDisc(event) {
     const destinyTower = event.currentTarget;
-    if (discMoving === true && (checkMove(destinyTower))=== true) {
-        
+    if (discMoving === true && (checkMove(destinyTower)) === true) {
         destinyTower.appendChild(selectedDisc);
         selectedDisc.style.border = 'none';
         discMoving = false;
     }
     checkWin();
-} 
+}
+ 
 
 //função para checar o movimento
 /* TO DO */
@@ -88,9 +122,8 @@ function moveDisc(event) {
 function checkMove(tower) {
     let existingDisc = tower.lastElementChild;
     if(existingDisc === null || selectedDisc.clientWidth < existingDisc.clientWidth){
-        
         return true;
-    };
+    }
     return false;
 }
 
@@ -102,10 +135,8 @@ function checkMove(tower) {
 *
 *
 */
-
-
-function checkWin() {
-    if(torre3.childElementCount === 4) {
+const checkWin = () => {
+    if(torre3.childElementCount === discAmount) {
         winMessage();
     };
 }
@@ -139,5 +170,38 @@ function winMessage() {
 function reset(){
     campo.innerHTML = ''
     
-    buildField()
+    difficultyMaker()
+}
+function easy() {discAmount = 4;
+
+}
+function medium() {discAmount = 5;
+
+}
+function hard() {discAmount = 6;
+
+}
+
+
+//função para criar botoes de dificuldade
+function difficultyMaker(){
+    let difContainer = document.createElement("div")
+    let easyButton = document.createElement("button")
+    let mediumButton = document.createElement("button")
+    let hardButton = document.createElement("button")
+
+    difContainer.setAttribute('id', 'difficulty-buttons')
+    easyButton.setAttribute('id', 'facil')
+    mediumButton.setAttribute('id', 'medio')
+    hardButton.setAttribute('id', 'dificil')
+    easyButton.innerText = "Fácil"
+    mediumButton.innerText = "Médio"
+    hardButton.innerText = "Difícil"
+
+    difContainer.appendChild(easyButton)
+    difContainer.appendChild(mediumButton)
+    difContainer.appendChild(hardButton)
+    campo.appendChild(difContainer)
+
+    discAmount = 4
 }
