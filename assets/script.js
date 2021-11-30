@@ -117,8 +117,14 @@ const checkWin = () => {
 */
 
 const winMessage = () => {
-    let popup = window.open('', 'Torre de Hanói', 'width=250px height=250px');
-    popup.document.write("Parabéns! Você venceu!");
+    let fullContainer = document.getElementById("full-container")
+    let messageContainer = document.createElement("div")
+    let message = document.createElement("h2")
+
+    message.innerText = "Parabéns! Você venceu!"
+    messageContainer.setAttribute("id","messageContainer")
+    messageContainer.appendChild(message)
+    fullContainer.appendChild(messageContainer)
 }
 
 //função para resetar o game
