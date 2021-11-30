@@ -1,5 +1,7 @@
 const startButton = document.getElementById('start-button');
 startButton.addEventListener('click', buildField);
+const resetButton = document.getElementById('reset-button');
+
 
 const campo = document.getElementById('towers-container');
 
@@ -49,10 +51,10 @@ function buildField() {
     campo.appendChild(torre2);
     campo.appendChild(torre3);
 
-    //Se dif facil
+    //Se dif médio
         //5 discos
         
-    //Se dif facil
+    //Se dif difícil
         //6 discos
 }
 
@@ -65,11 +67,65 @@ function selectDisc(event) {
 }
 
 function moveDisc(event) {
-    if (discMoving === true && (checkMove())=== true) {
-        const destinyTower = event.target;
+    const destinyTower = event.currentTarget;
+    if (discMoving === true && (checkMove(destinyTower))=== true) {
+        
         destinyTower.appendChild(selectedDisc);
         selectedDisc.style.border = 'none';
         discMoving = false;
     }
+    checkWin();
+} 
+
+//função para checar o movimento
+/* TO DO */
+/* Quando o usuário clicar em um disco para move-lo deve-se checar 
+*se o movimento que ele designou é permitido(caso o ultimo filho da torre for maior: true)
+*
+*
+*/
+
+const checkMove = (tower) => {
+    let existingDisc = tower.lastElementChild;
+    if(existingDisc === null || selectedDisc.clientWidth < existingDisc.clientWidth){
+        
+        return true;
+    };
+    return false;
 }
- 
+
+//função para checar a vitória
+/* TO DO */
+/*  A cada segundo click verificar se a torre3(div container) tem 4 discos(filhos)
+* caso retorne true deve chamar a função da msg de vitória
+*
+*
+*
+*/
+
+
+const checkWin = () => {
+    if(torre3.childElementCount === 4) {
+        winMessage();
+    };
+}
+//função para msg de vitória
+/* TO DO */
+/*  Cria um popup de vitória
+*
+*
+*/
+
+const winMessage = () => {
+    let popup = window.open('', 'Torre de Hanói', 'width=250px height=250px');
+    popup.document.write("Parabéns! Você venceu!");
+}
+
+//função para resetar o game
+/* TO DO */
+/*  Deve retornar para a página de escolha de dificuldade? 
+* innerHTML = '' / chama funções criadoras?
+*
+*
+*
+*/
