@@ -36,6 +36,7 @@ disco6.setAttribute('id', 'disc-6');
 //Variavel pra saber se ativa selectDisc ou moveDisc
 let discMoving = false;
 let selectedDisc = null;
+let moveCounter = 0;
 
 function buildField() {
     
@@ -69,11 +70,13 @@ function selectDisc(event) {
 function moveDisc(event) {
     const destinyTower = event.currentTarget;
     if (discMoving === true && checkMove(destinyTower)=== true) {
-        
         destinyTower.appendChild(selectedDisc);
         selectedDisc.style.border = 'none';
+        moveCounter++;
+        document.getElementById('move-counter').innerText = moveCounter;
         discMoving = false;
     }
+    
     checkWin();
 } 
 
@@ -143,6 +146,7 @@ function winMessage() {
 
 function reset(){
     campo.innerHTML = ''
-    
+    moveCounter = 0;
+    document.getElementById('move-counter').innerText = moveCounter;
     buildField()
 }
