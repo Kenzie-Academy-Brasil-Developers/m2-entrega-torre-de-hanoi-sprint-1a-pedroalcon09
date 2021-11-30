@@ -35,6 +35,15 @@ img {
 
 /* BODY */
 
+#contador {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    width: 190px;
+    font-weight: 900;
+    font-size: 20px;
+    margin-left: 20px;
+}
 p {
     margin: 10px 30px 15px 30px;
     font-size: 18px;
@@ -51,6 +60,12 @@ ul li {
     font-size: 18px;
 }
 
+#difficulty-buttons button {
+    width: 55px;
+    font-weight: 900;
+    font-size: 16px;
+}
+
 #button-container {
     display: flex;
     justify-content: center;
@@ -63,6 +78,8 @@ button {
     width: 100px;
     height: 30px;
     font-size: 18px;
+    font-weight: 900;
+    border-radius: 5px;
 }
 
 button:hover {
@@ -87,19 +104,28 @@ button:hover {
 }
 
 #tower-1, #tower-2, #tower-3 {
-    width: 8px;
+    width: 4px;
     background-color: black;
-    height: 75px;
+    height: 65px;
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
 } 
 
-#disc-1, #disc-2, #disc-3, #disc-4 {
-    height: 15px;
-}   
+#disc-1, #disc-2, #disc-3, #disc-4, #disc-5, #disc-6 {
+    height: 10px;
+    border-radius: 3px;
+}  
+#disc-6 {
+    width: 8px;
+    background-color: orange;
+}
+#disc-5 {
+    width: 15px;
+    background-color: purple;
+}
 #disc-4 {
-    width: 20px;
+    width: 25px;
     background-color: red;
 }
 #disc-3 {
@@ -137,7 +163,6 @@ footer p {
 
 @media (min-width:667px) {
 
-
     h1 {
         font-size: 35px;
     }
@@ -148,27 +173,34 @@ footer p {
 
     #tower-1, #tower-2, #tower-3  {
         height: 200px;
-        width: 15px;
+        width: 10px;
+    }
+    #difficulty-buttons button {
+        width: 75px;
+        height: 40px;
+        font-size: 22px;
     }
 
-    #disc-1, #disc-2, #disc-3, #disc-4 {
-        height: 40px;
-    }   
+    #disc-1, #disc-2, #disc-3, #disc-4, #disc-5, #disc-6 {
+        height: 30px;
+    } 
+    #disc-6 {
+        width: 20px;
+    }
+    #disc-5 {
+        width: 35px;
+    }  
     #disc-4 {
         width: 50px;
-        background-color: red;
     }
     #disc-3 {
         width: 75px;
-        background-color: green;
     }
     #disc-2 {
         width: 115px;
-        background-color: blue;
     }
     #disc-1 {
         width: 170px;
-        background-color: yellow;
     }
 
     p, li {
@@ -178,8 +210,6 @@ footer p {
     h3 {
         font-size: 28px;
     }
-
-
 }
 
 @media (min-width:1024px) {
@@ -193,27 +223,32 @@ footer p {
 
     #tower-1, #tower-2, #tower-3  {
         height: 220px;
-        width: 18px;
+        width: 13px;
     }
 
-    #disc-1, #disc-2, #disc-3, #disc-4 {
-        height: 40px;
+    #contador {
+        width: 225px;
+    }
+    #disc-1, #disc-2, #disc-3, #disc-4, #disc-5, #disc-6 {
+        height: 35px;
     }   
+    #disc-6 {
+        width: 30px;
+    }
+    #disc-5 {
+        width: 45px;
+    }  
     #disc-4 {
         width: 60px;
-        background-color: red;
     }
     #disc-3 {
         width: 85px;
-        background-color: green;
     }
     #disc-2 {
         width: 125px;
-        background-color: blue;
     }
     #disc-1 {
         width: 180px;
-        background-color: yellow;
     }
 
     p {

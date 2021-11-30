@@ -2,8 +2,14 @@ const startButton = document.getElementById('start-button');
 startButton.addEventListener('click', buildField);
 const resetButton = document.getElementById('reset-button');
 
-
 const campo = document.getElementById('towers-container');
+
+const botaoFacil = document.getElementById('facil');
+botaoFacil.addEventListener('click', easy);
+const botaoMedio = document.getElementById('medio');
+botaoMedio.addEventListener('click', medium);
+const botaoDificil = document.getElementById('dificil');
+botaoDificil.addEventListener('click', hard);
 
 const torre1 = document.createElement('div');
 torre1.setAttribute('id', 'tower-1');
@@ -35,27 +41,63 @@ disco6.setAttribute('id', 'disc-6');
     
 //Variavel pra saber se ativa selectDisc ou moveDisc
 let discMoving = false;
-let selectedDisc = null;
+//variavel para acessar disco selecionado
+let selectedDisc;
+//variavel para contar movimentos
+let moveCounter = 0;
+//Variavel pra limitar botao inicar somente p comeco da partida
+let tableActive = 0;
+//variavel para dizer o tanto de discos que tem na dificuldade escolhida
+let discAmount = 4;
 
 function buildField() {
-    
-    //A selecao de dificuldade vai entrar em condicionais nessa funcao
-    //Se dif facil
-        //4 discos
-    torre1.appendChild(disco1);
-    torre1.appendChild(disco2);
-    torre1.appendChild(disco3);
-    torre1.appendChild(disco4);
+    //Remove os botoes que ficam na area das torres
+    const botoes = document.getElementById('difficulty-buttons');
+    botoes.remove();
 
-    campo.appendChild(torre1);
-    campo.appendChild(torre2);
-    campo.appendChild(torre3);
+    if (tableActive === 0) {
+            //A selecao de dificuldade vai entrar em condicionais nessa funcao
+        //Se dif facil
+            //4 discos
+        if (discAmount === 4) {
+            torre1.appendChild(disco1);
+            torre1.appendChild(disco2);
+            torre1.appendChild(disco3);
+            torre1.appendChild(disco4);
 
-    //Se dif médio
-        //5 discos
-        
-    //Se dif difícil
-        //6 discos
+            campo.appendChild(torre1);
+            campo.appendChild(torre2);
+            campo.appendChild(torre3);
+        }
+        //Se dif difícil
+            //5 discos
+        else if (discAmount === 5) {
+            torre1.appendChild(disco1);
+            torre1.appendChild(disco2);
+            torre1.appendChild(disco3);
+            torre1.appendChild(disco4);
+            torre1.appendChild(disco5);
+
+            campo.appendChild(torre1);
+            campo.appendChild(torre2);
+            campo.appendChild(torre3);
+        }   
+        //Se dif médio
+            //6 discos
+        else if (discAmount === 6) {
+            torre1.appendChild(disco1);
+            torre1.appendChild(disco2);
+            torre1.appendChild(disco3);
+            torre1.appendChild(disco4);
+            torre1.appendChild(disco5);
+            torre1.appendChild(disco6);
+
+            campo.appendChild(torre1);
+            campo.appendChild(torre2);
+            campo.appendChild(torre3);
+        }        
+           tableActive++;
+    }
 }
 
 function selectDisc(event) {
@@ -68,14 +110,21 @@ function selectDisc(event) {
 
 function moveDisc(event) {
     const destinyTower = event.currentTarget;
-    if (discMoving === true && (checkMove(destinyTower))=== true) {
-        
+    if (discMoving === true && (checkMove(destinyTower)) === true) {
         destinyTower.appendChild(selectedDisc);
         selectedDisc.style.border = 'none';
         discMoving = false;
+        moveCounter++;
+        document.getElementById('move-counter').innerText = moveCounter;
+    }
+    else if (discMoving === true && (checkMove(destinyTower)) === false) {
+        selectedDisc.style.border = 'none';
+        discMoving = false;
+        selectedDisc = null;
     }
     checkWin();
-} 
+}
+ 
 
 //função para checar o movimento
 /* TO DO */
@@ -88,9 +137,8 @@ function moveDisc(event) {
 const checkMove = (tower) => {
     let existingDisc = tower.lastElementChild;
     if(existingDisc === null || selectedDisc.clientWidth < existingDisc.clientWidth){
-        
         return true;
-    };
+    }
     return false;
 }
 
@@ -102,10 +150,8 @@ const checkMove = (tower) => {
 *
 *
 */
-
-
 const checkWin = () => {
-    if(torre3.childElementCount === 4) {
+    if(torre3.childElementCount === discAmount) {
         winMessage();
     };
 }
@@ -129,3 +175,7 @@ const winMessage = () => {
 *
 *
 */
+
+function easy() {discAmount = 4;}
+function medium() {discAmount = 5;}
+function hard() {discAmount = 6;}
