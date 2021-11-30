@@ -94,7 +94,9 @@ button:hover {
     background-color: rgba(255, 255, 255, 0.9);
     color: forestgreen;
 }
-
+#messageContainer h2{
+    font-size: 12px;
+}
 /* TORRES E DISCOS DO DOM */
 
 #towers-container {
@@ -200,7 +202,9 @@ footer p {
         font-size: 28px;
     }
 
-
+    #messageContainer h2{
+        font-size: 20px;
+    }
 }
 
 @media (min-width:1024px) {
@@ -246,5 +250,8 @@ footer p {
     
     h3 {
         font-size: 32px;
+    }
+    #messageContainer h2{
+        font-size: 24px;
     }
 }
