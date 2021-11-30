@@ -68,7 +68,7 @@ function selectDisc(event) {
 
 function moveDisc(event) {
     const destinyTower = event.currentTarget;
-    if (discMoving === true && (checkMove(destinyTower))=== true) {
+    if (discMoving === true && checkMove(destinyTower)=== true) {
         
         destinyTower.appendChild(selectedDisc);
         selectedDisc.style.border = 'none';
