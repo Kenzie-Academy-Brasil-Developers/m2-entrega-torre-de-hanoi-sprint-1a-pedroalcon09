@@ -1,7 +1,7 @@
 const startButton = document.getElementById('start-button');
 startButton.addEventListener('click', buildField);
 const resetButton = document.getElementById('reset-button');
-
+resetButton.addEventListener('click', reset)
 
 const campo = document.getElementById('towers-container');
 
@@ -85,7 +85,7 @@ function moveDisc(event) {
 *
 */
 
-const checkMove = (tower) => {
+function checkMove(tower) {
     let existingDisc = tower.lastElementChild;
     if(existingDisc === null || selectedDisc.clientWidth < existingDisc.clientWidth){
         
@@ -104,7 +104,7 @@ const checkMove = (tower) => {
 */
 
 
-const checkWin = () => {
+function checkWin() {
     if(torre3.childElementCount === 4) {
         winMessage();
     };
@@ -116,7 +116,7 @@ const checkWin = () => {
 *
 */
 
-const winMessage = () => {
+function winMessage() {
     let fullContainer = document.getElementById("full-container")
     let messageContainer = document.createElement("div")
     let message = document.createElement("h2")
@@ -135,3 +135,9 @@ const winMessage = () => {
 *
 *
 */
+
+function reset(){
+    campo.innerHTML = ''
+    
+    buildField()
+}
