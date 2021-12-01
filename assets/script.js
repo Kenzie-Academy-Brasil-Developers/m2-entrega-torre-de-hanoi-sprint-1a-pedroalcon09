@@ -32,7 +32,7 @@ const disco5 = document.createElement('span');
 disco5.setAttribute('id', 'disc-5');
 const disco6 = document.createElement('span');
 disco6.setAttribute('id', 'disc-6');
-    
+
 //Variavel pra saber se ativa selectDisc ou moveDisc
 let discMoving = false;
 let selectedDisc = null;
@@ -60,64 +60,65 @@ function buildField() {
 }
 
 function selectDisc(event) {
+    let comparativePath = event.path[0]
     if (discMoving === false) {
+
         selectedDisc = event.currentTarget.lastElementChild;
         selectedDisc.style.border = '2px solid white';
         discMoving = true;
     }
+    //compara os discos para que, caso sejam iguais, haja a des-seleção 
+    else if(comparativePath === selectedDisc){
+        disSelect()
+    }
+    
+}
+
+//função para des-selecionar o disco
+function disSelect(){
+    selectedDisc.style.border = 'none';
+    discMoving = false;
+    selectedDisc = null;
 }
 
 function moveDisc(event) {
+
     const destinyTower = event.currentTarget;
-    if (discMoving === true && checkMove(destinyTower)=== true) {
+    //verifica se o disco foi selecionado e se o movimento é permitido
+    if (discMoving === true && checkMove(destinyTower)) {
+        
         destinyTower.appendChild(selectedDisc);
         selectedDisc.style.border = 'none';
         moveCounter++;
         document.getElementById('move-counter').innerText = moveCounter;
         discMoving = false;
     }
-    
+    //checa a vitória a cada segundo movimento
     checkWin();
 } 
 
 //função para checar o movimento
-/* TO DO */
-/* Quando o usuário clicar em um disco para move-lo deve-se checar 
-*se o movimento que ele designou é permitido(caso o ultimo filho da torre for maior: true)
-*
-*
-*/
 
 function checkMove(tower) {
     let existingDisc = tower.lastElementChild;
+    //se a torre não tiver nenhum filho ou se o disco selecionado for menor do que o disco existente
     if(existingDisc === null || selectedDisc.clientWidth < existingDisc.clientWidth){
-        
+
         return true;
-    };
+    }
+
     return false;
 }
 
 //função para checar a vitória
-/* TO DO */
-/*  A cada segundo click verificar se a torre3(div container) tem 4 discos(filhos)
-* caso retorne true deve chamar a função da msg de vitória
-*
-*
-*
-*/
-
 
 function checkWin() {
+    //se o numero de filhos da ultima torre for igual ao numero de discos do jogo exibe mensagem de vitoria
     if(torre3.childElementCount === 4) {
         winMessage();
     };
 }
 //função para msg de vitória
-/* TO DO */
-/*  Cria um popup de vitória
-*
-*
-*/
 
 function winMessage() {
     let fullContainer = document.getElementById("full-container")
@@ -136,17 +137,13 @@ function winMessage() {
 
 
 //função para resetar o game
-/* TO DO */
-/*  Deve retornar para a página de escolha de dificuldade? 
-* innerHTML = '' / chama funções criadoras?
-*
-*
-*
-*/
 
 function reset(){
+
     campo.innerHTML = ''
+
     moveCounter = 0;
     document.getElementById('move-counter').innerText = moveCounter;
+    disSelect()
     buildField()
 }
