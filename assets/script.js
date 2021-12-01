@@ -36,6 +36,7 @@ disco6.setAttribute('id', 'disc-6');
 //Variavel pra saber se ativa selectDisc ou moveDisc
 let discMoving = false;
 let selectedDisc = null;
+let moveCounter = 0;
 
 function buildField() {
     
@@ -88,6 +89,8 @@ function moveDisc(event) {
         
         destinyTower.appendChild(selectedDisc);
         selectedDisc.style.border = 'none';
+        moveCounter++;
+        document.getElementById('move-counter').innerText = moveCounter;
         discMoving = false;
     }
     //checa a vitória a cada segundo movimento
@@ -136,8 +139,11 @@ function winMessage() {
 //função para resetar o game
 
 function reset(){
-    campo.innerHTML = '';
 
+    campo.innerHTML = ''
+
+    moveCounter = 0;
+    document.getElementById('move-counter').innerText = moveCounter;
     disSelect()
     buildField()
 }

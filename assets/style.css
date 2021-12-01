@@ -94,9 +94,21 @@ button:hover {
     background-color: rgba(255, 255, 255, 0.9);
     color: forestgreen;
 }
+
 #messageContainer h2{
     font-size: 12px;
 }
+
+#contador-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    width: 180px;
+    margin-left: 20px;
+    font-size: 22px;
+    font-weight: 900;
+}
+
 /* TORRES E DISCOS DO DOM */
 
 #towers-container {
@@ -120,6 +132,7 @@ button:hover {
 
 #disc-1, #disc-2, #disc-3, #disc-4 {
     height: 15px;
+    border-radius: 5px;
 }   
 #disc-4 {
     width: 20px;
@@ -193,6 +206,9 @@ footer p {
         width: 170px;
         background-color: yellow;
     }
+    #contador-container {
+        width: 200px;
+    }
 
     p, li {
         font-size: 20px;
@@ -214,6 +230,9 @@ footer p {
     }
     img {
         width: 50px;
+    }
+    #contador-container {
+        width: 220px;
     }
 
     #tower-1, #tower-2, #tower-3  {
